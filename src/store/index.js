@@ -7,10 +7,11 @@ import { combineEpics } from 'redux-observable';
 import * as authEpics from '../store/epic/auth'
 
 
-import TodoListReducer,{ donorReducer} from './reducers/AppReducer';
+import TodoListReducer,{ donorReducer,donorDetailsReducer} from './reducers/AppReducer';
 import authReducer from './reducers/auth-reducer';
 
 export const rootReducer = combineReducers({
+    donorDetailsReducer,
     donorReducer,
     auth: authReducer,
     routing: routerReducer

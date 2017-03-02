@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { authActions,signOut,fetchDonorsFromServer } from '../store/actions/auth-action';
+import { authActions,signOut,fetchDonorsFromServer,donorDetailAction } from '../store/actions/auth-action';
 import * as MUI from 'material-ui';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import Person from 'material-ui/svg-icons/social/person';
@@ -13,7 +13,10 @@ import { browserHistory } from 'react-router';
 
  class Donors extends Component {
 
-     handleDrawerToggle = (id) =>  browserHistory.push('/donors/'+id);
+     handleDrawerToggle = (u) => {
+         this.props.donorDetail(u);
+         browserHistory.push('/donors/'+u.uid);
+     };
 
      showUsersList(users) {
          if(!users) {
@@ -48,7 +51,7 @@ import { browserHistory } from 'react-router';
                                     rightIcon={<ActionInfo />}
                                     primaryText={user.firstName}
                                     secondaryText={user.bloodGroup}
-                                    onTouchTap={this.handleDrawerToggle.bind(this,user.uid)}
+                                    onTouchTap={this.handleDrawerToggle.bind(this,user)}
                                 />
                                 <MUI.Divider />
 
@@ -65,7 +68,11 @@ import { browserHistory } from 'react-router';
 const mapStateToProps = (state) => {
     return { donors: state.donorReducer };
 };
-export default connect(mapStateToProps)(Donors);
+
+const mapDispatchToProps = (d) =>{
+    return {donorDetail:(detail)=>d(donorDetailAction(detail))}
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Donors);
 
 const styles = {
     donerListContainer: {

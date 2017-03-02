@@ -50,11 +50,18 @@ class Navbar extends Component {
         )
 
         const rightMenu = auth.auth.user ? (
+                <div className='Navbar-Main-Menu'>
+            <FlatButton
+                label='Donors List'
+                style={buttonStyle}
+                onClick={() => browserHistory.push('/donors')}
+            />,
             <FlatButton
                 label='LogOut'
                 style={buttonStyle}
                 onClick={this.handleLogin}
             />
+            </div>
         ) : mainMenu;
 
         /* return (

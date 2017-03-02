@@ -2,7 +2,8 @@
  * Created by Anonmous on 3/2/2017.
  */
 import React, { Component } from 'react';
-import * as MUI from 'material-ui'
+import * as MUI from 'material-ui';
+import { connect } from 'react-redux'
 import Person from 'material-ui/svg-icons/social/person';
 
 
@@ -11,19 +12,23 @@ class DonorDetail extends Component {
     //user-default
     render() {
 
+       var donarDetails = this.props.donors.donorDetails;
+        console.log(donarDetails);
+
         return (
             <div style={styles.donerDetailContainer}>
                 <MUI.Card>
                     <MUI.CardHeader
-                        title="Zeeshan Hanif"
-                        subtitle="AB+"
+                        title={donarDetails.firstName}
+                        subtitle={donarDetails.bloodGroup}
                         avatar={<MUI.Avatar icon={<Person />}/>}
                     />
                     <MUI.CardText >
-                        <div>Contatct No. : 0333-1234567</div>
-                        <div>Age : 45</div>
-                        <div>Date Of Birth : 13 Sep 2017</div>
-                        <div>Address : Jamshed Road</div>
+                        <div>Contatct No. : {donarDetails.number}</div>
+                        <div>First Name : {donarDetails.firstName}</div>
+                        <div>Last Name :{donarDetails.lastName}</div>
+                        <div>Email :{donarDetails.email}</div>
+                        <div>Phone Number :{donarDetails.number}</div>
                     </MUI.CardText>
                 </MUI.Card>
             </div>
@@ -31,7 +36,13 @@ class DonorDetail extends Component {
     }
 }
 
-export default DonorDetail
+const mapStateToProps = (state) => {
+    return { donors: state.donorDetailsReducer };
+};
+
+export default connect(mapStateToProps)(DonorDetail);
+
+
 
 const styles = {
     donerListContainer: {

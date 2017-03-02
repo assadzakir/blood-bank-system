@@ -29,13 +29,13 @@ export function signOut() {
     };
 }
 
-// export function fetchDonors(donors) {
-//    return {
-//         type:"FETCH_DONORS",
-//         payload:donors
-//     }
-// }
-//
+export function donorDetailAction(donorsDetail) {
+   return {
+        type:"DONOR_DETAILS",
+        payload:donorsDetail
+    }
+}
+
 // export function fetchDonorsFromServer(dispatch){
 //     return()=>{
 //         return firebase.database().ref().child('users').orderByChild('role').equalTo("donor")
