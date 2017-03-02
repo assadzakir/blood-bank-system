@@ -5,6 +5,7 @@ import { combineReducers } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { combineEpics } from 'redux-observable';
 import * as authEpics from '../store/epic/auth'
+import * as localStore from '../localStore'
 
 
 import TodoListReducer,{ donorReducer,donorDetailsReducer} from './reducers/AppReducer';
@@ -31,10 +32,14 @@ const rootEpic = combineEpics(
 const epicMiddleware = createEpicMiddleware(rootEpic);
 
 
-let store = createStore(rootReducer,applyMiddleware(epicMiddleware));
+let store = createStore(rootReducer,localStore.get(),applyMiddleware(epicMiddleware));
 
-store.subscribe(() =>
+store.subscribe(() => {
+    const state = store.getState()
+    localStore.set(state, ['donorDetailsReducer', 'donorReducer', 'auth', 'routing']);
     console.log(store.getState())
-);
+
+});
+
 
 export default store;
