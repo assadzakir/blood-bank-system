@@ -37,8 +37,8 @@ class signup extends Component {
             lastName: null
         })
 
-    handleSignup = ({email, password, firstName, lastName}) => {
-        this.props.registerWithCustom({ email, password, firstName, lastName })
+    handleSignup = ({email, password, firstName, lastName,number,bloodGroup}) => {
+        this.props.registerWithCustom({ email, password, firstName, lastName,number,bloodGroup })
         browserHistory.push('/signin')
     }
 

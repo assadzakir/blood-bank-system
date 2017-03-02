@@ -54,6 +54,8 @@ export const registerEpic = action$ =>
                             email: obj.email,
                             uid: obj.key,
                             role: 'user',
+                            number:obj.number,
+                            bloodGroup:obj.bloodGroup,
                             lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
                         })
 

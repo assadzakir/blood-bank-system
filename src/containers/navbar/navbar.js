@@ -4,7 +4,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Link } from 'react-router'
 import firebase from 'firebase';
-import { authActions } from '../../store/actions/auth-action';
+import { authActions,signOut } from '../../store/actions/auth-action';
 import { browserHistory } from 'react-router';
 // redux/firebase
 import { connect } from 'react-redux'
@@ -27,6 +27,7 @@ class Navbar extends Component {
     };
 
     handleLogin = (loginData) => {
+        console.log(this.props);
         this.props.signOut();
         browserHistory.push('/')
     };
@@ -85,6 +86,10 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
     return { auth: state };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return { signOut: () => dispatch(signOut())  };
 };
 
-export default connect(mapStateToProps, authActions)(Navbar);
+export default connect(mapStateToProps,mapDispatchToProps)(Navbar);

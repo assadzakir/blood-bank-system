@@ -35,4 +35,21 @@ function TodoListReducer(state = INITIAL_STATE, action) {
     }
 }
 
+const INITIAL_DONOR_STATE = {
+    donorList:[]
+};
+
+export var donorReducer = function (state= INITIAL_DONOR_STATE,action) {
+    switch (action.type) {
+        case "FETCH_DONORS":
+            var newState = Object.assign({}, state);
+            newState.donorList.push({ ...action.payload});
+            return newState;
+
+        default:
+            return state
+    }
+}
+
+
 export default TodoListReducer;

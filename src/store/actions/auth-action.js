@@ -1,7 +1,7 @@
 /**
  * Created by Anonmous on 2/27/2017.
  */
-
+import firebase,{ firebaseAuth, firebaseDb} from '../../config/firebase';
 import {
     SIGN_IN,
     SIGN_OUT,
@@ -28,3 +28,16 @@ export function signOut() {
         type: SIGN_OUT
     };
 }
+
+export function fetchDonors(donors) {
+   return {
+        type:"FETCH_DONORS",
+        payload:donors
+    }
+}
+
+// export var fetchDonorsFromServer=()=>{
+//     return(dispatch,getState)=>{
+//         return firebase.database().ref().child('users')
+//     }
+// }

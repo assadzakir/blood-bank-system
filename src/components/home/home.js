@@ -8,7 +8,7 @@ import FlatButton from 'material-ui/FlatButton';
 const Home = () => (
     <Card>
         <CardMedia>
-            <img src="http://www.bsacs.in/images/65b899cc-0991-4f76-bfee-3c9726e886d7.jpg" />
+            <img src="http://bloodbankdepot.com/wp-content/themes/Bloodbank/image/1.jpg" />
         </CardMedia>
     </Card>
 );
