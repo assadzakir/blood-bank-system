@@ -5,29 +5,35 @@ import React, { Component } from 'react';
 import * as MUI from 'material-ui';
 import { connect } from 'react-redux'
 import Person from 'material-ui/svg-icons/social/person';
+import RaisedButton from 'material-ui/RaisedButton';
+import firebase, {firebaseAuth, firebaseDb} from '../config/firebase';
 
 
 
-class DonorDetail extends Component {
+class RegistAsDonor extends Component {
+
+
     //user-default
     render() {
 
-       var donarDetails = this.props.donors.donorDetails;
-        console.log(donarDetails);
+        function updateUser(){
+           
+            firebaseDb.ref().child(`users/${this.props.auth.user.uid}`)
+                .update({
+                    role:'donor'
+                }).then(function (data) {
+                alert('Thank you for become a donor')
+            })
+        }
 
         return (
             <div style={styles.donerDetailContainer}>
                 <MUI.Card>
                     <MUI.CardHeader
-                        title={donarDetails.firstName}
-                        subtitle={donarDetails.bloodGroup}
-                        avatar={<MUI.Avatar icon={<Person />}/>}
+                        title="Do you want to become a donor ? Click Yes If You want"
                     />
                     <MUI.CardText >
-                        <div>First Name : {donarDetails.firstName}</div>
-                        <div>Last Name :{donarDetails.lastName}</div>
-                        <div>Email :{donarDetails.email}</div>
-                        <div>Phone Number :{donarDetails.number}</div>
+                        <RaisedButton onClick={updateUser.bind(this)} secondary={true} label="Yes" fullWidth={true} />
                     </MUI.CardText>
                 </MUI.Card>
             </div>
@@ -36,10 +42,10 @@ class DonorDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { donors: state.donorDetailsReducer };
-};
+    return { auth: state.auth };
+}
 
-export default connect(mapStateToProps)(DonorDetail);
+export default connect(mapStateToProps)(RegistAsDonor);
 
 
 

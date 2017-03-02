@@ -55,6 +55,11 @@ class Navbar extends Component {
                 label='Donors List'
                 style={buttonStyle}
                 onClick={() => browserHistory.push('/donors')}
+            />
+              <FlatButton
+                label='Donor Register'
+                style={buttonStyle}
+                onClick={() => browserHistory.push('/register-as-donor')}
             />,
             <FlatButton
                 label='LogOut'

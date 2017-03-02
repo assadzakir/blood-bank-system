@@ -7,12 +7,14 @@ import signin from './containers/signin/signin';
 import signup from './containers/signup/signup';
 import donors from './containers/donors';
 import DonorDetail from './containers/donor-details';
+import RegisterAsDonor from './containers/register-as-donor';
 import './index.css';
 import store from './store'
 import { Provider } from 'react-redux'
 import { browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Theme from './config/theme'
 // ...
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
@@ -30,6 +32,7 @@ ReactDOM.render(
                     <Route path='signup' component={signup} />
                     <Route path='signin' component={signin} />
                     <Route path='donors' component={donors} />
+                    <Route path='register-as-donor' component={RegisterAsDonor} />
                     <Route path="donors/:id" component={DonorDetail} />
 
                 </Route>
