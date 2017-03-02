@@ -31,12 +31,12 @@ class signin extends Component {
         if (auth.isLoggedin && !nextProps.auth.auth.isLoggedin) {
             browserHistory.push('/signin')
         }
-        else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && nextProps.auth.auth.user.role == "user") {
+        else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin) {
             browserHistory.push('/donors');
         }
-        else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && nextProps.auth.auth.user.role == "admin") {
-            browserHistory.push('/admin/' + nextProps.auth.auth.user.uid);
-        }
+        // else if (!auth.isLoggedin && nextProps.auth.auth.isLoggedin && nextProps.auth.auth.user.role == "admin") {
+        //     browserHistory.push('/admin/' + nextProps.auth.auth.user.uid);
+        // }
 
     }
 
