@@ -6,6 +6,7 @@ import Home from './components/home/home'
 import signin from './containers/signin/signin';
 import signup from './containers/signup/signup';
 import donors from './containers/donors';
+import DonorDetail from './containers/donor-details';
 import './index.css';
 import store from './store'
 import { Provider } from 'react-redux'
@@ -29,6 +30,7 @@ ReactDOM.render(
                     <Route path='signup' component={signup} />
                     <Route path='signin' component={signin} />
                     <Route path='donors' component={donors} />
+                    <Route path="donors/:id" component={DonorDetail} />
 
                 </Route>
             </Router>
