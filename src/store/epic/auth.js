@@ -1,9 +1,9 @@
 /**
  * Created by Anonmous on 2/27/2017.
  */
-import { Observable } from "rxjs";
-import { ActionsObservable } from "redux-observable";
-import { browserHistory } from 'react-router';
+import {Observable} from "rxjs";
+import {ActionsObservable} from "redux-observable";
+import {browserHistory} from 'react-router';
 
 
 import {
@@ -19,7 +19,7 @@ import {
 
 } from '../../store/actions';
 
-import firebase,{ firebaseAuth, firebaseDb} from '../../config/firebase';
+import firebase, {firebaseAuth, firebaseDb} from '../../config/firebase';
 
 
 export function setLocalStorage(pro, userObj) {
@@ -54,8 +54,6 @@ export const registerEpic = action$ =>
                             email: obj.email,
                             uid: obj.key,
                             role: 'user',
-                            number:obj.number,
-                            bloodGroup:obj.bloodGroup,
                             lastTimeLoggedIn: firebase.database.ServerValue.TIMESTAMP
                         })
 
@@ -161,3 +159,19 @@ export const loginEpic = action$ =>
                 })
 
         });
+
+
+export const fetchDonorsFromServer = action$ =>
+    action$.ofType('SIGN_IN_SUCCESS')
+        .switchMap(() => {
+            return Observable.fromPromise(firebase.database().ref().child('users').orderByChild('role').equalTo("donor").once('value'))
+                .map(u => {
+                    return {
+                        type: 'FETCH_DONORS',
+                        payload: u.val()
+                    }
+                });
+            }
+        );
+
+

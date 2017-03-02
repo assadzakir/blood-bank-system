@@ -29,15 +29,20 @@ export function signOut() {
     };
 }
 
-export function fetchDonors(donors) {
-   return {
-        type:"FETCH_DONORS",
-        payload:donors
-    }
-}
-
-// export var fetchDonorsFromServer=()=>{
-//     return(dispatch,getState)=>{
-//         return firebase.database().ref().child('users')
+// export function fetchDonors(donors) {
+//    return {
+//         type:"FETCH_DONORS",
+//         payload:donors
 //     }
 // }
+//
+// export function fetchDonorsFromServer(dispatch){
+//     return()=>{
+//         return firebase.database().ref().child('users').orderByChild('role').equalTo("donor")
+//             .once('value', snapshot => {
+//                 console.log(snapshot.val());
+//                 return dispatch(fetchDonors(snapshot.val()))
+//             });
+//     }
+// }
+

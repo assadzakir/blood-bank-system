@@ -7,7 +7,7 @@ import { combineEpics } from 'redux-observable';
 import * as authEpics from '../store/epic/auth'
 
 
-import TodoListReducer,{ donorReducer} from './reducers/todoReducer';
+import TodoListReducer,{ donorReducer} from './reducers/AppReducer';
 import authReducer from './reducers/auth-reducer';
 
 export const rootReducer = combineReducers({
@@ -20,6 +20,7 @@ export const rootReducer = combineReducers({
 
 
 const rootEpic = combineEpics(
+    authEpics.fetchDonorsFromServer,
     authEpics.registerEpic,
     authEpics.loginEpic,
     authEpics.logoutEpic
@@ -29,7 +30,7 @@ const rootEpic = combineEpics(
 const epicMiddleware = createEpicMiddleware(rootEpic);
 
 
-let store = createStore(rootReducer, compose( applyMiddleware(epicMiddleware),applyMiddleware(thunk)));
+let store = createStore(rootReducer,applyMiddleware(epicMiddleware));
 
 store.subscribe(() =>
     console.log(store.getState())
